@@ -1,36 +1,43 @@
-# Flask API with Custom Error Handlers and Authentication
+# Simple API
 
-## Description
+Simple HTTP API for playing with `User` model.
 
-This project implements a Flask API with custom error handlers for unauthorized and forbidden requests. It also introduces a basic authentication system that can be extended to support various authentication mechanisms.
 
-## Requirements
+## Files
 
-- Python 3.4.3 or later
-- Flask
-- Flask-CORS
+### `models/`
 
-## Installation
+- `base.py`: base of all models of the API - handle serialization to file
+- `user.py`: user model
 
-1. Clone the repository:
+### `api/v1`
 
-    ```sh
-    git clone https://github.com/your_username/flask_api_auth.git
-    cd flask_api_auth
-    ```
+- `app.py`: entry point of the API
+- `views/index.py`: basic endpoints of the API: `/status` and `/stats`
+- `views/users.py`: all users endpoints
 
-2. Install the required packages:
 
-    ```sh
-    pip3 install -r requirements.txt
-    ```
+## Setup
 
-## Usage
+```
+$ pip3 install -r requirements.txt
+```
 
-### Running the App
 
-Start the Flask app by running:
+## Run
 
-```sh
-API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=auth python3 -m api.v1.app
+```
+$ API_HOST=0.0.0.0 API_PORT=5000 python3 -m api.v1.app
+```
+
+
+## Routes
+
+- `GET /api/v1/status`: returns the status of the API
+- `GET /api/v1/stats`: returns some stats of the API
+- `GET /api/v1/users`: returns the list of users
+- `GET /api/v1/users/:id`: returns an user based on the ID
+- `DELETE /api/v1/users/:id`: deletes an user based on the ID
+- `POST /api/v1/users`: creates a new user (JSON parameters: `email`, `password`, `last_name` (optional) and `first_name` (optional))
+- `PUT /api/v1/users/:id`: updates an user based on the ID (JSON parameters: `last_name` and `first_name`)
 
